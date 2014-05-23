@@ -29,6 +29,7 @@ function load(app, fn){
   app.get('/user/courses', dbg, courses.user);
   app.post('/user/courses', dbg, courses.create);
   app.get('/user/courses/:courseId', dbg, courses.prepEdit);
+  app.put('/user/courses/:courseId', dbg, courses.edit);
 
   console.log('Routes Loaded');
   fn();

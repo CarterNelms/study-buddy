@@ -50,6 +50,11 @@ exports.user = (req,res)=>{
     res.render('user/courses', {courses: courses, title: 'My Courses'});
   });
 };
+
+exports.prepEdit = (req,res)=>{
+  res.render('user/course', {title: 'Edit Course'});
+};
+
 exports.prepEdit = (req,res)=>{
   res.render('user/course', {title: 'Edit Course'});
 };
