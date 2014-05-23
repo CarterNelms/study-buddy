@@ -30,11 +30,11 @@ function load(app, fn){
   app.get('/user/courses', dbg, courses.user);
   app.post('/user/courses', dbg, courses.create);
   app.get('/user/courses/:courseId', dbg, courses.prepEdit);
-  app.get('/user/courses/:coursesId/lesson/new', dbg, lessons.new);
-  app.post('/user/courses/:coursesId/lesson/new', dbg, lessons.create);
-  app.get('/user/courses/:coursesId/lesson/:lessonId/test', dbg, tests.prepEdit);
-  app.put('/user/courses/:coursesId/lesson/:lessonId/test', dbg, tests.edit);
-
+  app.put('/user/courses/:courseId', dbg, courses.edit);
+  app.get('/user/courses/:courseId/lesson/new', dbg, lessons.new);
+  app.post('/user/courses/:courseId/lesson/new', dbg, lessons.create);
+  app.get('/user/courses/:courseId/lesson/:lessonId/test', dbg, tests.prepEdit);
+  app.put('/user/courses/:courseId/lesson/:lessonId/test', dbg, tests.edit);
 
   console.log('Routes Loaded');
   fn();

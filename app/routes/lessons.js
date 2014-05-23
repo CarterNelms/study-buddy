@@ -1,13 +1,17 @@
 'use strict';
 
+var traceur = require('traceur');
+var Course = traceur.require(__dirname + '/../models/course.js');
+// var Lesson = traceur.require(__dirname + '/../models/lesson.js');
+
 exports.index = (req, res)=>{
   res.render('home/index', {title: 'Node.js: Home'});
 };
 
-exports.help = (req, res)=>{
-  res.render('home/help', {title: 'Node.js: Help'});
-};
-
 exports.new = (req,res)=>{
-  res.render('user/courses/lesson/new', {title:'Create Course'});
+  var courseId = req.params.courseId;
+  Course.getByCourseId(courseId, course=>
+  {
+    res.render('lessons/new', {course: course, title:'Create Course'});
+  });
 };
