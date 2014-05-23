@@ -1,9 +1,8 @@
 'use strict';
 
-exports.index = (req, res)=>{
-  res.render('home/index', {title: 'Node.js: Home'});
+exports.prepEdit = (req, res)=>{
+  res.render('user/test', {title: 'Create a Test'});
 };
-
-exports.help = (req, res)=>{
-  res.render('home/help', {title: 'Node.js: Help'});
+exports.Edit = (req,res)=>{
+  res.redirect('/user/courses/:coursesId');
 };
