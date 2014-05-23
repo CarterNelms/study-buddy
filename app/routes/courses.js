@@ -1,7 +1,7 @@
 'use strict';
 
 exports.index = (req, res)=>{
-  res.render('home/index', {title: 'Node.js: Home'});
+  res.render('courses/index', {title: 'Available Courses'});
 };
 
 exports.help = (req, res)=>{
