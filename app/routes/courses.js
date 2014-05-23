@@ -3,7 +3,6 @@
 exports.index = (req, res)=>{
   res.render('courses/index', {title: 'Available Courses'});
 };
-
-exports.help = (req, res)=>{
-  res.render('home/help', {title: 'Node.js: Help'});
+exports.new = (req,res)=>{
+  res.render('courses/new', {title:'Create a New Course'});
 };
