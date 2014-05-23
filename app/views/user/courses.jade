@@ -1,0 +1,14 @@
+extends ../shared/template
+
+block content
+  h1 My Courses
+
+  a(href='/user/courses/new')
+    button Create New Course
+
+  table.table
+    thead
+      tr
+        th Course Name
+        th Course Subject
+        th Course Description

@@ -26,6 +26,7 @@ function load(app, fn){
   app.post('/signup', dbg, users.create);
   app.get('/courses', dbg, courses.index);
   app.get('/user/courses/new', dbg, courses.new);
+  app.get('/user/courses', dbg, courses.user);
   app.post('/user/courses', dbg, courses.create);
 
   console.log('Routes Loaded');

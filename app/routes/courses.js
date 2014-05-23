@@ -42,3 +42,6 @@ exports.create = (req, res)=>{
     }
   });
 };
+exports.user = (req,res)=>{
+  res.render('user/courses', {title: 'My Courses'});
+};
