@@ -4,6 +4,10 @@ exports.index = (req, res)=>{
   res.render('home/index', {title: 'Node.js: Home'});
 };
 
-exports.help = (req, res)=>{
-  res.render('home/help', {title: 'Node.js: Help'});
+exports.create = (req, res)=>{
+  console.log(req.body);
+};
+
+exports.login = (req, res)=>{
+  console.log(req.query);
 };
