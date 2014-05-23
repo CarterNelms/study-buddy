@@ -20,11 +20,12 @@ function load(app, fn){
 
 
   app.get('/', dbg, home.index);
+  app.get('/about', dbg, home.about);
   app.get('/portal', dbg, home.portal);
   app.get('/login', dbg, users.login);
   app.post('/signup', dbg, users.create);
   app.get('/courses', dbg, courses.index);
-  app.get('/about', dbg, home.about);
+  app.post('/user/courses', dbg, courses.create);
 
   console.log('Routes Loaded');
   fn();
