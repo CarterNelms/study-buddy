@@ -22,7 +22,6 @@ function load(app, fn){
   app.get('/', dbg, home.index);
   app.get('/about', dbg, home.about);
   app.get('/portal', dbg, home.portal);
-  app.get('/about', dbg, home.about);
   app.get('/login', dbg, users.login);
   app.post('/signup', dbg, users.create);
   app.get('/courses', dbg, courses.index);
