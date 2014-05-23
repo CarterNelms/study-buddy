@@ -2,7 +2,14 @@ extends ../shared/template
 
 block content
   h1 Edit Course
-  form(method='PUT', action='/user/courses/#{course._Id}')
+
+
+  button(id='create', class='btn btn-success',onClick="window.location.href='user/courses/#{course._id}/lesson/new'") Create a Lesson
+  button(id='delete', class='btn btn-danger') Delete Course
+
+
+
+  form(method='PUT', action='/user/courses/ #{course._id}')
     .form-group
       label Course Name
       input.form-control(type='text', name='name', placeholder='Enter Course Name')
@@ -21,3 +28,14 @@ block content
         option Languages
         option Science
     button(type='submit', class='btn btn-default') Submit
+
+    h2 Course Lesson
+      table.table
+        thead
+          tr
+            th Lesson Name
+        tbody
+          each lesson in lessons
+            tr
+              td= lesson.name
+              td= lesson.description
