@@ -22,6 +22,15 @@ class Course
     courses.save(this, ()=>fn());
   }
 
+  static getByCourseId(courseId, fn)
+  {
+    courseId = Mongo.ObjectID(courseId);
+    courses.findOne({_id: courseId}, (e, course)=>
+    {
+      fn(course);
+    });
+  }
+
   static getByUserId(userId, fn)
   {
     userId = Mongo.ObjectID(userId);
