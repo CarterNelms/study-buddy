@@ -12,6 +12,8 @@ exports.new = (req,res)=>{
 };
 
 exports.create = (req, res)=>{
+  console.log('COOKIE USERID');
+  console.log(req.session.userId);
   Course.getByUserId(req.session.userId, courses=>
   {
     var newCourseParams = req.body;
@@ -34,7 +36,7 @@ exports.create = (req, res)=>{
 
     function createCourse()
     {
-      var newCourse = new Course(newCourseParams);
+      var newCourse = new Course(newCourseParams, req.session.userId);
       newCourse.save(()=>
       {
         res.redirect('/user/courses');
