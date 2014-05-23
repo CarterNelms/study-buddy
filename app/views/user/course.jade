@@ -2,7 +2,7 @@ extends ../shared/template
 
 block content
   h1 Edit Course
-  form(method='PUT', action='/user/courses/#{course._Id}')
+  form(method='PUT', action='/user/courses/#{course._id}')
     .form-group
       label Course Name
       input.form-control(type='text', name='name', placeholder='Enter Course Name')
