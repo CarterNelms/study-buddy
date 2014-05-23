@@ -1,0 +1,13 @@
+extends ../shared/template
+
+block content
+  h1 User Portal
+  #forms
+    form#signup(action='/signup', method='post')
+      input#signupemail(type='email', name='email', autofocus=true, placeholder='Email')
+      input#signuppw(type='password', name='password', placeholder='Password')
+      button#signup Signup
+    form#login(action='/login', method='get')
+      input#loginemail(type='email', name='email', autofocus=true, placeholder='Email')
+      input#loginpw(type='password', name='password', placeholder='Password')
+      button#login Login

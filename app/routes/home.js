@@ -4,6 +4,6 @@ exports.index = (req, res)=>{
   res.render('home/index', {title: 'Node.js: Home'});
 };
 
-exports.help = (req, res)=>{
-  res.render('home/help', {title: 'Node.js: Help'});
+exports.portal = (req, res)=>{
+  res.render('home/portal', {title: 'User Portal'});
 };
