@@ -42,6 +42,11 @@ exports.create = (req, res)=>{
     }
   });
 };
+
 exports.user = (req,res)=>{
-  res.render('user/courses', {title: 'My Courses'});
+  var userId = req.session.userId;
+  Course.getByUserId(userId, courses=>
+  {
+    res.render('user/courses', {courses: courses, title: 'My Courses'});
+  });
 };
