@@ -36,10 +36,12 @@ function load(app, fn){
   app.post('/user/courses', dbg, courses.create);
   app.get('/user/courses/:courseId', dbg, courses.prepEdit);
   app.put('/user/courses/:courseId', dbg, courses.edit);
+  app.delete('/user/courses/delete/:courseId', dbg, courses.delete);
   app.get('/user/courses/:courseId/lessons/new', dbg, lessons.new);
   app.post('/user/courses/:courseId/lessons/new', dbg, lessons.create);
   app.get('/user/courses/lesson/:lessonId', dbg, lessons.prepEdit);
   app.put('/user/courses/lesson/:lessonId', dbg, lessons.edit);
+  app.delete('/user/courses/lesson/delete/:lessonId', dbg, lessons.delete);
 
   console.log('Routes Loaded');
   fn();
