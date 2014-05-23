@@ -4,7 +4,7 @@
 //subject
 //description
 
-var courses = global.nss.collection('courses');
+var courses = global.nss.db.collection('courses');
 var Mongo = require('mongodb');
 
 class Course
