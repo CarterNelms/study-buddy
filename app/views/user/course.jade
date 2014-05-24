@@ -3,8 +3,12 @@ extends ../shared/template
 block content
   h1 Edit Course
 
-  button(id='create', class='btn btn-success',onClick="window.location.href='/user/courses/#{course._id}/lesson/new'") Create a Lesson
-  button(id='delete', class='btn btn-danger') Delete Course
+  form(method='GET', action='/user/courses/#{course._id}/lesson/new')
+    button(id='create', class='btn btn-success') Create a Lesson
+    //- button(id='create', class='btn btn-success',onClick="window.location.href='/user/courses/#{course._id}/lesson/new'") Create a Lesson
+  form(method='POST', action='/user/courses/#{course._id}')
+    input(type="hidden" name="_method" value="DELETE")
+    button(id='delete', class='btn btn-danger') Delete Course
 
   form(method='POST', action='/user/courses/#{course._id}')
     input(type="hidden" name="_method" value="PUT")

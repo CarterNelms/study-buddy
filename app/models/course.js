@@ -29,6 +29,11 @@ class Course
     this.description = obj.description;
   }
 
+  destroy(fn)
+  {
+    courses.remove({_id: this._id}, true, ()=>fn());
+  }
+
   static getByCourseId(courseId, fn)
   {
     courseId = Mongo.ObjectID(courseId);

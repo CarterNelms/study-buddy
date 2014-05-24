@@ -51,7 +51,7 @@ exports.prepEdit = (req,res)=>{
   var courseId = req.params.courseId;
   Course.getByCourseId(courseId, course=>
   {
-    if(course)
+    if(String(course.userId) === req.session.userId)
     {
       Lesson.getByCourseId(courseId, lessons=>res.render('user/course', {course: course, lessons: lessons, title: 'Edit Course'}));
     }
@@ -66,16 +66,31 @@ exports.edit = (req,res)=>{
   var courseId = req.params.courseId;
   Course.getByCourseId(courseId, course=>
   {
-    var destination = '/user/courses';
-    if(course)
+    if(String(course.userId) === req.session.userId)
     {
       course = _.create(Course.prototype, course);
       course.edit(req.body);
-      course.save(()=>res.redirect(destination));
+      course.save(()=>res.redirect('/user/courses'));
     }
     else
     {
-      res.redirect(destination);
+      res.redirect('/user/courses');
     }
   });
+};
+
+exports.destroy = (req,res)=>{
+  var courseId = req.params.courseId;
+  Course.getByCourseId(courseId, course=>
+  {
+    if(String(course.userId) === req.session.userId)
+    {
+      course = _.create(Course.prototype, course);
+      course.destroy(()=>res.redirect('/user/courses'));
+    }
+    else
+    {
+      res.redirect('/user/courses');
+    }
+  });  
 };
