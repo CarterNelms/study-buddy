@@ -10,4 +10,7 @@ block content
     form#login(action='/login', method='get')
       input#loginemail(type='email', name='email', autofocus=true, placeholder='Email')
       input#loginpw(type='password', name='password', placeholder='Password')
-      button#login Login
+      button#loginuser Login
+
+block scripts
+  script(src='/js/es6/compiled/portal.js');
