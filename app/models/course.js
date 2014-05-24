@@ -36,21 +36,36 @@ class Course
 
   static getByCourseId(courseId, fn)
   {
-    courseId = Mongo.ObjectID(courseId);
+    courseId = objectIDSafe(courseId);
     courses.findOne({_id: courseId}, (e, course)=>
     {
+      if(!course)
+      {
+        course = {};
+      }
       fn(course);
     });
   }
 
   static getByUserId(userId, fn)
   {
-    userId = Mongo.ObjectID(userId);
+    userId = objectIDSafe(userId);
     courses.find({userId: userId}).toArray((e, courses)=>
     {
       fn(courses);
     });
   }
+}
+
+function objectIDSafe(id)
+{
+  'use strict';
+
+  if(id.match(/^[0-9a-fA-F]{24}$/))
+  {
+    return Mongo.ObjectID(id);
+  }
+  return id;
 }
 
 module.exports = Course;
