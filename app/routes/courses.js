@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var traceur = require('traceur');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
@@ -13,8 +14,6 @@ exports.new = (req,res)=>{
 };
 
 exports.create = (req, res)=>{
-  console.log('COOKIE USERID');
-  console.log(req.session.userId);
   Course.getByUserId(req.session.userId, courses=>
   {
     var newCourseParams = req.body;
@@ -38,32 +37,23 @@ exports.create = (req, res)=>{
     function createCourse()
     {
       var newCourse = new Course(newCourseParams, req.session.userId);
-      newCourse.save(()=>
-      {
-        res.redirect('/user/courses');
-      });
+      newCourse.save(()=>res.redirect('/user/courses'));
     }
   });
 };
 
 exports.user = (req,res)=>{
   var userId = req.session.userId;
-  Course.getByUserId(userId, courses=>
-  {
-    res.render('user/courses', {courses: courses, title: 'My Courses'});
-  });
+  Course.getByUserId(userId, courses=>res.render('user/courses', {courses: courses, title: 'My Courses'}));
 };
 
 exports.prepEdit = (req,res)=>{
   var courseId = req.params.courseId;
   Course.getByCourseId(courseId, course=>
   {
-    if(course)
+    if(String(course.userId) === req.session.userId)
     {
-      Lesson.getByCourseId(courseId, lessons=>
-      {
-        res.render('user/course', {course: course, lessons: lessons, title: 'Edit Course'});
-      });
+      Lesson.getByCourseId(courseId, lessons=>res.render('user/course', {course: course, lessons: lessons, title: 'Edit Course'}));
     }
     else
     {
@@ -73,5 +63,34 @@ exports.prepEdit = (req,res)=>{
 };
 
 exports.edit = (req,res)=>{
-  // res.render('user/course', {title: 'Edit Course'});
+  var courseId = req.params.courseId;
+  Course.getByCourseId(courseId, course=>
+  {
+    if(String(course.userId) === req.session.userId)
+    {
+      course = _.create(Course.prototype, course);
+      course.edit(req.body);
+      course.save(()=>res.redirect('/user/courses'));
+    }
+    else
+    {
+      res.redirect('/user/courses');
+    }
+  });
+};
+
+exports.destroy = (req,res)=>{
+  var courseId = req.params.courseId;
+  Course.getByCourseId(courseId, course=>
+  {
+    if(String(course.userId) === req.session.userId)
+    {
+      course = _.create(Course.prototype, course);
+      course.destroy(()=>res.redirect('/user/courses'));
+    }
+    else
+    {
+      res.redirect('/user/courses');
+    }
+  });  
 };

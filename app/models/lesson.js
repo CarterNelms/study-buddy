@@ -26,12 +26,23 @@ class Lesson
 
   static getByCourseId(courseId, fn)
   {
-    courseId = Mongo.ObjectID(courseId);
+    courseId = objectIDSafe(courseId);
     lessons.find({courseId: courseId}).toArray((e, lessons)=>
     {
       fn(lessons);
     });
   }
+}
+
+function objectIDSafe(id)
+{
+  'use strict';
+
+  if(id.match(/^[0-9a-fA-F]{24}$/))
+  {
+    return Mongo.ObjectID(id);
+  }
+  return id;
 }
 
 module.exports = Lesson;
