@@ -22,6 +22,13 @@ class Course
     courses.save(this, ()=>fn());
   }
 
+  edit(obj)
+  {
+    this.name = obj.name;
+    this.subject = obj.subject;
+    this.description = obj.description;
+  }
+
   static getByCourseId(courseId, fn)
   {
     courseId = Mongo.ObjectID(courseId);
