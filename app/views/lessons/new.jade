@@ -5,7 +5,7 @@ block content
 
   button(id='delete', class='btn btn-danger') Delete Lesson
 
-  form(method='POST', action='/user/courses/#{course._id}/lesson/new')
+  form(method='POST', action='/user/courses/#{course._id}/lesson')
     .form-group
       label Course Name
       input.form-control(type='text', name='name', placeholder='Enter Course Name')
