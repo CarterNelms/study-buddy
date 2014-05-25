@@ -42,6 +42,14 @@ class Course
     });
   }
 
+  static getBySubject(subject, fn)
+  {
+    courses.find({subject: subject}).toArray((e, courses)=>
+    {
+      fn(courses);
+    });
+  }
+
   static getByCourseId(courseId, fn)
   {
     courseId = objectIDSafe(courseId);

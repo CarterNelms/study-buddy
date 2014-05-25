@@ -27,6 +27,7 @@ function load(app, fn){
   app.get('/user', dbg, users.index);
   app.post('/signup', dbg, users.create);
   app.get('/courses', dbg, courses.index);
+  app.get('/courses/filter/:subject', dbg, courses.filter);
   app.get('/user/courses/new', dbg, courses.new);
   app.get('/user/courses', dbg, courses.user);
   app.post('/user/courses', dbg, courses.create);

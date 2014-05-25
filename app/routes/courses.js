@@ -12,6 +12,13 @@ exports.index = (req, res)=>{
   });
 };
 
+exports.filter = (req, res)=>{
+  Course.getBySubject(req.params.subject, courses=>
+  {
+    res.render('courses/index', {courses: courses, itle: 'Available Courses'});
+  });
+};
+
 exports.new = (req,res)=>{
   res.render('courses/new', {title:'Create a New Course'});
 };
