@@ -4,6 +4,10 @@ var traceur = require('traceur');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 
+exports.index = (req,res)=>{
+  console.log(req.params);
+};
+
 exports.new = (req,res)=>{
   var courseId = req.params.courseId;
   Course.getByCourseId(courseId, course=>
@@ -32,5 +36,5 @@ exports.create = (req,res)=>{
     {
       res.redirect('/user');
     }
-  });  
+  });
 };

@@ -24,9 +24,13 @@ function load(app, fn){
   app.get('/about', dbg, home.about);
   app.get('/portal', dbg, home.portal);
   app.get('/login', dbg, users.login);
+  app.get('/logout', dbg, users.logout);
   app.get('/user', dbg, users.index);
   app.post('/signup', dbg, users.create);
   app.get('/courses', dbg, courses.index);
+  app.get('/courses/filter/:subject', dbg, courses.filter);
+  app.get('/courses/:courseId', dbg, courses.view);
+  app.get('/lessons/:lessonId', dbg, lessons.index);
   app.get('/user/courses/new', dbg, courses.new);
   app.get('/user/courses', dbg, courses.user);
   app.post('/user/courses', dbg, courses.create);
@@ -36,7 +40,7 @@ function load(app, fn){
   app.get('/user/courses/:courseId/lesson/new', dbg, lessons.new);
   app.post('/user/courses/:courseId/lesson', dbg, lessons.create);
   app.get('/user/courses/:courseId/lesson/:lessonId/test', dbg, tests.prepEdit);
-  app.put('/user/courses/:courseId/lesson/:lessonId/test', dbg, tests.edit);
+  // app.put('/user/courses/:courseId/lesson/:lessonId/test', dbg, tests.edit);
 
   console.log('Routes Loaded');
   fn();
