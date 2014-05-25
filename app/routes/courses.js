@@ -8,14 +8,21 @@ var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 exports.index = (req, res)=>{
   Course.getAll(courses=>
   {
-    res.render('courses/index', {courses: courses, itle: 'Available Courses'});
+    res.render('courses/index', {courses: courses, title: 'Available Courses'});
   });
 };
 
 exports.filter = (req, res)=>{
   Course.getBySubject(req.params.subject, courses=>
   {
-    res.render('courses/index', {courses: courses, itle: 'Available Courses'});
+    res.render('courses/index', {courses: courses, title: 'Available Courses: '+req.params.subject});
+  });
+};
+
+exports.view = (req, res)=>{
+  Course.getByCourseId(req.params.courseId, course=>
+  {
+    res.render('courses/view', {course: course, title: course.name});
   });
 };
 
