@@ -30,6 +30,7 @@ function load(app, fn){
   app.get('/courses', dbg, courses.index);
   app.get('/courses/filter/:subject', dbg, courses.filter);
   app.get('/courses/:courseId', dbg, courses.view);
+  app.get('/lessons/:lessonId', dbg, lessons.index);
   app.get('/user/courses/new', dbg, courses.new);
   app.get('/user/courses', dbg, courses.user);
   app.post('/user/courses', dbg, courses.create);

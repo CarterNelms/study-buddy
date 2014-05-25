@@ -20,9 +20,12 @@ exports.filter = (req, res)=>{
 };
 
 exports.view = (req, res)=>{
-  Course.getByCourseId(req.params.courseId, course=>
-  {
-    res.render('courses/view', {course: course, title: course.name});
+  Course.getByCourseId(req.params.courseId, course=>{
+    Lesson.getByCourseId(req.params.courseId, lessons=>{
+      console.log(course);
+      console.log(lessons);
+      res.render('courses/view', {course: course, lessons: lessons, title: course.name});
+    });
   });
 };
 
@@ -116,5 +119,5 @@ exports.destroy = (req,res)=>{
     {
       res.redirect('/user/courses');
     }
-  });  
+  });
 };
