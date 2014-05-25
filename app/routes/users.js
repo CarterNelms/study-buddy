@@ -19,9 +19,6 @@ exports.login = (req, res)=>{
   var user = new User(req.query);
   user.login(u=>{
     if(u){
-      console.log('****************************');
-      console.log(u);
-      console.log('****************************');
       req.session.userId = u._id;
       res.redirect('/user');
     }else{
@@ -29,4 +26,9 @@ exports.login = (req, res)=>{
       res.redirect('/portal');
     }
   });
+};
+
+exports.logout = (req, res)=>{
+  req.session.userId = null;
+  res.redirect('/portal');
 };
