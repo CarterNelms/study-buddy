@@ -12,6 +12,6 @@ block content
     tbody
       each course in courses
         tr
-          td= course.name
+          td: a(href='/courses/#{course._id}')= course.name
           td: a(href='/courses/filter/#{course.subject}')= course.subject
           td= course.description
