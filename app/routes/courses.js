@@ -6,7 +6,10 @@ var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 
 exports.index = (req, res)=>{
-  res.render('courses/index', {title: 'Available Courses'});
+  Course.getAll(courses=>
+  {
+    res.render('courses/index', {courses: courses, itle: 'Available Courses'});
+  });
 };
 
 exports.new = (req,res)=>{
