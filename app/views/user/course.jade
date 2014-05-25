@@ -3,30 +3,31 @@ extends ../shared/template
 block content
   h1 Edit Course
 
+  form(method='GET', action='/user/courses/#{course._id}/lesson/new')
+    button(id='create', class='btn btn-success') Create a Lesson
+    //- button(id='create', class='btn btn-success',onClick="window.location.href='/user/courses/#{course._id}/lesson/new'") Create a Lesson
+  form(method='POST', action='/user/courses/#{course._id}')
+    input(type="hidden" name="_method" value="DELETE")
+    button(id='delete', class='btn btn-danger') Delete Course
 
-  button(id='create', class='btn btn-success',onClick="window.location.href='user/courses/#{course._id}/lesson/new'") Create a Lesson
-  button(id='delete', class='btn btn-danger') Delete Course
-
-
-
-  form(method='PUT', action='/user/courses/#{course._id}')
+  form(method='POST', action='/user/courses/#{course._id}')
+    input(type="hidden" name="_method" value="PUT")
     .form-group
       label Course Name
-      input.form-control(type='text', name='name', placeholder='Enter Course Name')
+      input.form-control(type='text', name='name', placeholder='Enter Course Name' value=course.name)
     .form-group
       label Course Description
-      textarea.form-control(type='text',name='description', placeholder='Enter Course Description')
+      textarea.form-control(type='text',name='description', placeholder='Enter Course Description')=course.description
     .form-group
       label Course Subject
       select.form-control(type='text', name='subject')
-        option Select Course Subject
-        option Agriculture
-        option Culinary
-        option Computer Science
-        option History
-        option Math
-        option Languages
-        option Science
+        option(selected=(course.subject === 'Agriculture' ? true : false)) Agriculture
+        option(selected=(course.subject === 'Culinary' ? true : false)) Culinary
+        option(selected=(course.subject === 'Computer Science' ? true : false)) Computer Science
+        option(selected=(course.subject === 'History' ? true : false)) History
+        option(selected=(course.subject === 'Math' ? true : false)) Math
+        option(selected=(course.subject === 'Languages' ? true : false)) Languages
+        option(selected=(course.subject === 'Science' ? true : false)) Science
     button(type='submit', class='btn btn-default') Submit
 
     h2 Course Lesson
@@ -37,6 +38,12 @@ block content
         tbody
           each lesson in lessons
             tr
+<<<<<<< HEAD
             td
               a(href='/user/courses/#{course._id}/lesson/#{lesson._id}')= lesson.name
             td= lesson.description
+=======
+              td
+                a(href='/user/courses/#{course._id}/lesson/#{lesson._id}')= lesson.name
+              td= lesson.description
+>>>>>>> teacherFrontend-Editor-terrence

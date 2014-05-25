@@ -22,14 +22,50 @@ class Course
     courses.save(this, ()=>fn());
   }
 
+  edit(obj)
+  {
+    this.name = obj.name;
+    this.subject = obj.subject;
+    this.description = obj.description;
+  }
+
+  destroy(fn)
+  {
+    courses.remove({_id: this._id}, true, ()=>fn());
+  }
+
+  static getByCourseId(courseId, fn)
+  {
+    courseId = objectIDSafe(courseId);
+    courses.findOne({_id: courseId}, (e, course)=>
+    {
+      if(!course)
+      {
+        course = {};
+      }
+      fn(course);
+    });
+  }
+
   static getByUserId(userId, fn)
   {
-    userId = Mongo.ObjectID(userId);
+    userId = objectIDSafe(userId);
     courses.find({userId: userId}).toArray((e, courses)=>
     {
       fn(courses);
     });
   }
+}
+
+function objectIDSafe(id)
+{
+  'use strict';
+
+  if(id.match(/^[0-9a-fA-F]{24}$/))
+  {
+    return Mongo.ObjectID(id);
+  }
+  return id;
 }
 
 module.exports = Course;
