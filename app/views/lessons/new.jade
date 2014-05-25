@@ -1,0 +1,16 @@
+extends ../shared/template
+
+block content
+  h1 Create a Lesson
+
+  button(id='delete', class='btn btn-danger') Delete Lesson
+
+  form(method='POST', action='/user/courses/#{course._id}/lesson')
+    .form-group
+      label Course Name
+      input.form-control(type='text', name='name', placeholder='Enter Course Name')
+    .form-group
+      label Lesson Description
+      textarea.form-control(type='text',name='description', placeholder='Enter Course Description')
+
+    button(type='submit', class='btn btn-default') Create

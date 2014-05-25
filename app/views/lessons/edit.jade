@@ -1,0 +1,19 @@
+extends ../shared/template
+
+block content
+  h1 Edit Lesson
+
+  button(id='delete', class='btn btn-danger') Delete Lesson
+  button(id='create-test', class'btn btn-success') Create Test
+
+  form(method='PUT', action='/user/courses/#{courses._id}/lesson/#{lesson._id}')
+    .form-group
+      label Course Name
+      input.form-control(type='text', name='name', placeholder='Enter Course Name')
+    .form-group
+      label Lesson Description
+      textarea.form-control(type='text',name='description', placeholder='Enter Course Description')
+
+    button(type='submit', class='btn btn-default') Create
+
+    a(href='/user/courses/#{courses._id}/lesson/#{lesson._id}/test') test.name

@@ -9,3 +9,9 @@ block content
         th Course Name
         th Course Subject
         th Course Description
+    tbody
+      each course in courses
+        tr
+          td= course.name
+          td= course.subject
+          td= course.description
