@@ -54,7 +54,14 @@ exports.create = (req, res)=>{
 
 exports.user = (req,res)=>{
   var userId = req.session.userId;
-  Course.getByUserId(userId, courses=>res.render('user/courses', {courses: courses, title: 'My Courses'}));
+  if(userId)
+  {
+    Course.getByUserId(userId, courses=>res.render('user/courses', {courses: courses, title: 'My Courses'}));
+  }
+  else
+  {
+    res.redirect('/portal');
+  }
 };
 
 exports.prepEdit = (req,res)=>{
