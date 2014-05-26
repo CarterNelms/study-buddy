@@ -21,7 +21,10 @@ class Lesson
 
   save(fn)
   {
-    lessons.save(this, ()=>fn());
+    lessons.save(this, (e, lesson)=>
+    {
+      fn(lesson);
+    });
   }
 
   static getByCourseId(courseId, fn)

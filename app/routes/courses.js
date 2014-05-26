@@ -6,7 +6,27 @@ var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 
 exports.index = (req, res)=>{
-  res.render('courses/index', {title: 'Available Courses'});
+  Course.getAll(courses=>
+  {
+    res.render('courses/index', {courses: courses, title: 'Available Courses'});
+  });
+};
+
+exports.filter = (req, res)=>{
+  Course.getBySubject(req.params.subject, courses=>
+  {
+    res.render('courses/index', {courses: courses, title: 'Available Courses: '+req.params.subject});
+  });
+};
+
+exports.view = (req, res)=>{
+  Course.getByCourseId(req.params.courseId, course=>{
+    Lesson.getByCourseId(req.params.courseId, lessons=>{
+      console.log(course);
+      console.log(lessons);
+      res.render('courses/view', {course: course, lessons: lessons, title: course.name});
+    });
+  });
 };
 
 exports.new = (req,res)=>{
@@ -44,7 +64,14 @@ exports.create = (req, res)=>{
 
 exports.user = (req,res)=>{
   var userId = req.session.userId;
-  Course.getByUserId(userId, courses=>res.render('user/courses', {courses: courses, title: 'My Courses'}));
+  if(userId)
+  {
+    Course.getByUserId(userId, courses=>res.render('user/courses', {courses: courses, title: 'My Courses'}));
+  }
+  else
+  {
+    res.redirect('/portal');
+  }
 };
 
 exports.prepEdit = (req,res)=>{
@@ -92,5 +119,5 @@ exports.destroy = (req,res)=>{
     {
       res.redirect('/user/courses');
     }
-  });  
+  });
 };

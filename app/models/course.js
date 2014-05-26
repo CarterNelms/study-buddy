@@ -34,6 +34,22 @@ class Course
     courses.remove({_id: this._id}, true, ()=>fn());
   }
 
+  static getAll(fn)
+  {
+    courses.find().toArray((e, courses)=>
+    {
+      fn(courses);
+    });
+  }
+
+  static getBySubject(subject, fn)
+  {
+    courses.find({subject: subject}).toArray((e, courses)=>
+    {
+      fn(courses);
+    });
+  }
+
   static getByCourseId(courseId, fn)
   {
     courseId = objectIDSafe(courseId);

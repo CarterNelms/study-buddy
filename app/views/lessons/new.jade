@@ -13,7 +13,7 @@ block content
 
     #content-container
       .basic-wrapper(style='display: none;')
-          .toolbar-container
+          #toolbar.toolbar-container
             select.sc-font(title='Font')
               option(value='sans-serif', selected='selected') Sans Serif
               option(value='Georgia, serif') Serif
@@ -136,5 +136,10 @@ block content
               span.sc-format-button.sc-image(title='Image')
             //- span.sc-format-group
             //-   span.sc-format-button.sc-authorship(title='Authorship')
-          .editor-container
+          #editor.editor-container
+    input(type='hidden' name='material' value='')
     button(type='submit', class='btn btn-default') Submit
+
+block scripts
+  srcipt(src='http://quilljs.com/js/quill.js')
+  script(src='/js/es6/compiled/lessonNew.js')
