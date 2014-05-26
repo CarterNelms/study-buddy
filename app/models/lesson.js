@@ -27,6 +27,13 @@ class Lesson
     });
   }
 
+  static getByLessonId(lessonId, fn){
+    lessonId = objectIDSafe(lessonId);
+    lessons.findOne({_id: lessonId}, (e, lesson)=>{
+      fn(lesson);
+    });
+  }
+
   static getByCourseId(courseId, fn)
   {
     courseId = objectIDSafe(courseId);

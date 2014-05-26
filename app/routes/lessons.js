@@ -6,7 +6,10 @@ var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 var fs = require('fs');
 
 exports.index = (req,res)=>{
-  console.log(req.params);
+  var lessonId = req.params.lessonId;
+  Lesson.getByLessonId(lessonId, lesson=>{
+    res.render('lessons/index', {lesson: lesson, title:'A Lesson'});
+  });
 };
 
 exports.new = (req,res)=>{
