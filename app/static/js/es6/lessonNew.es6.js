@@ -12,7 +12,6 @@ $(function()
     {
       var html = $('#content-container iframe').contents().find('body').html();
       $('input[name=material]').val(html);
-      console.log('hello');
     });
   }
 });
