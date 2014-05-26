@@ -3,6 +3,7 @@
 var traceur = require('traceur');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
+var fs = require('fs');
 
 exports.index = (req,res)=>{
   console.log(req.params);
@@ -30,7 +31,11 @@ exports.create = (req,res)=>{
     if(String(course.userId) === req.session.userId)
     {
       var newLesson = new Lesson(req.body, course._id);
-      newLesson.save(()=>res.redirect('/user/courses/'+course._id));
+      newLesson.save(lesson=>
+        {
+          fs.writeFile(__dirname + '/../static/materials/' +  lesson._id + '.html', req.body.material);
+          res.redirect('/user/courses/'+course._id);
+        });
     }
     else
     {
