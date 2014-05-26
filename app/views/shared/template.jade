@@ -13,6 +13,8 @@ html
     link(href='/css/normalize.css', rel='stylesheet')
     link(href='/css/buttons.css', rel='stylesheet')
     link(href='/less/app.css', rel='stylesheet')
+    - var profileRoute = (userId !== undefined || null ? '/user' : '/portal' )
+
   body
     .navbar.navbar-inverse
       .container-fluid
@@ -22,6 +24,8 @@ html
             li: a(href='/about') About
             li: a(href='/portal') Login
             li: a(href='/courses') Courses
+            li: a(href='#{profileRoute}') Profile
+
     block content
 
     script(src='/js/vendor/jquery-2.1.1.js')

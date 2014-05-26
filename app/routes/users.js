@@ -4,7 +4,8 @@ var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
 
 exports.index = (req, res)=>{
-  res.render('user/index', {title: 'User'});
+  var userId = req.session.userId;
+  res.render('user/index', {userId: userId, title: 'User'});
 };
 
 exports.create = (req, res)=>{

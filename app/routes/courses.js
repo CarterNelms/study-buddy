@@ -6,31 +6,35 @@ var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 
 exports.index = (req, res)=>{
+  var userId = req.session.userId;
   Course.getAll(courses=>
   {
-    res.render('courses/index', {courses: courses, title: 'Available Courses'});
+    res.render('courses/index', {userId: userId, courses: courses, title: 'Available Courses'});
   });
 };
 
 exports.filter = (req, res)=>{
+  var userId = req.session.userId;
   Course.getBySubject(req.params.subject, courses=>
   {
-    res.render('courses/index', {courses: courses, title: 'Available Courses: '+req.params.subject});
+    res.render('courses/index', {userId: userId, courses: courses, title: 'Available Courses: '+req.params.subject});
   });
 };
 
 exports.view = (req, res)=>{
+  var userId = req.session.userId;
   Course.getByCourseId(req.params.courseId, course=>{
     Lesson.getByCourseId(req.params.courseId, lessons=>{
       console.log(course);
       console.log(lessons);
-      res.render('courses/view', {course: course, lessons: lessons, title: course.name});
+      res.render('courses/view', {userid: userId, course: course, lessons: lessons, title: course.name});
     });
   });
 };
 
 exports.new = (req,res)=>{
-  res.render('courses/new', {title:'Create a New Course'});
+  var userId = req.session.userId;
+  res.render('courses/new', {userId: userId, title:'Create a New Course'});
 };
 
 exports.create = (req, res)=>{
@@ -66,7 +70,9 @@ exports.user = (req,res)=>{
   var userId = req.session.userId;
   if(userId)
   {
-    Course.getByUserId(userId, courses=>res.render('user/courses', {courses: courses, title: 'My Courses'}));
+    Course.getByUserId(userId, courses=>{
+      res.render('user/courses', {userId: userId, courses: courses, title: 'My Courses'});
+    });
   }
   else
   {
@@ -75,12 +81,13 @@ exports.user = (req,res)=>{
 };
 
 exports.prepEdit = (req,res)=>{
+  var userId = req.session.userId;
   var courseId = req.params.courseId;
   Course.getByCourseId(courseId, course=>
   {
     if(String(course.userId) === req.session.userId)
     {
-      Lesson.getByCourseId(courseId, lessons=>res.render('user/course', {course: course, lessons: lessons, title: 'Edit Course'}));
+      Lesson.getByCourseId(courseId, lessons=>res.render('user/course', {userId: userId, course: course, lessons: lessons, title: 'Edit Course'}));
     }
     else
     {
