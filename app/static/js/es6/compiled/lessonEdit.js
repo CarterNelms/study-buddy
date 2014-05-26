@@ -7,7 +7,7 @@ $(function() {
   $button.click(submitNewLesson);
   function submitNewLesson(e) {
     $(this).closest('form').submit(function() {
-      var html = $('#content-container iframe').contents().find('body > *:first-child').html();
+      var html = $('#content-container iframe').contents().find('body > #quill-2').html();
       $('input[name=material]').val(html);
     });
   }

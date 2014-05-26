@@ -90,7 +90,7 @@ exports.edit = (req, res)=>
         {
           lesson = _.create(Lesson.prototype, lesson);
           lesson.edit(req.body);
-          lesson.save(lesson=>
+          lesson.save(()=>
           {
             var path = __dirname + '/../static/materials/' +  lesson._id + '.html';
             fs.unlink(path, ()=>

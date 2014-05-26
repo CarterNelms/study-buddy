@@ -31,6 +31,8 @@ class Lesson
   {
     this.name = obj.name;
     this.description = obj.description;
+    this.testTimer = obj.testTimer;
+    this.passingScore = obj.passingScore;
   }
 
   static getByLessonId(lessonId, fn){
