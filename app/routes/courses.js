@@ -27,7 +27,7 @@ exports.view = (req, res)=>{
     Lesson.getByCourseId(req.params.courseId, lessons=>{
       console.log(course);
       console.log(lessons);
-      res.render('courses/view', {userid: userId, course: course, lessons: lessons, title: course.name});
+      res.render('courses/view', {userId: userId, course: course, lessons: lessons, title: course.name});
     });
   });
 };

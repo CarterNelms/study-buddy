@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 var traceur = require('traceur');
 var Course = traceur.require(__dirname + '/../models/course.js');
