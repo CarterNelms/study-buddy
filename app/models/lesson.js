@@ -27,6 +27,12 @@ class Lesson
     });
   }
 
+  edit(obj)
+  {
+    this.name = obj.name;
+    this.description = obj.description;
+  }
+
   static getByLessonId(lessonId, fn){
     lessonId = objectIDSafe(lessonId);
     lessons.findOne({_id: lessonId}, (e, lesson)=>{

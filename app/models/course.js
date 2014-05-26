@@ -77,6 +77,7 @@ function objectIDSafe(id)
 {
   'use strict';
 
+  id = String(id);
   if(id.match(/^[0-9a-fA-F]{24}$/))
   {
     return Mongo.ObjectID(id);

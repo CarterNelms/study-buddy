@@ -39,5 +39,6 @@ block content
           each lesson in lessons
             tr
               td
-                a(href='/user/courses/#{course._id}/lesson/#{lesson._id}')= lesson.name
+                //- a(href='/user/courses/#{course._id}/lesson/#{lesson._id}')= lesson.name
+                a(href='/user/courses/lesson/#{lesson._id}')= lesson.name
               td= lesson.description

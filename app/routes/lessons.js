@@ -4,6 +4,7 @@ var traceur = require('traceur');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 var fs = require('fs');
+var _ = require('lodash');
 
 exports.index = (req,res)=>{
   var lessonId = req.params.lessonId;
@@ -35,10 +36,75 @@ exports.create = (req,res)=>{
     {
       var newLesson = new Lesson(req.body, course._id);
       newLesson.save(lesson=>
+      {
+        fs.writeFile(__dirname + '/../static/materials/' +  lesson._id + '.html', req.body.material);
+        res.redirect('/user/courses/'+course._id);
+      });
+    }
+    else
+    {
+      res.redirect('/user');
+    }
+  });
+};
+
+exports.prepEdit = (req, res)=>
+{
+  var lessonId = req.params.lessonId;
+  Lesson.getByLessonId(lessonId, lesson=>
+  {
+    if(lesson)
+    {
+      Course.getByCourseId(lesson.courseId, course=>
+      {
+        if(String(course.userId) === req.session.userId)
         {
-          fs.writeFile(__dirname + '/../static/materials/' +  lesson._id + '.html', req.body.material);
-          res.redirect('/user/courses/'+course._id);
-        });
+          fs.readFile(__dirname + '/../static/materials/' +  lesson._id + '.html', 'utf8', (e, material)=>
+          {
+            res.render('user/lesson', {material: material, lesson: lesson, title: 'Edit Lesson'});
+          });
+        }
+        else
+        {
+          res.redirect('/user');
+        }
+      });
+    }
+    else
+    {
+      res.redirect('/user');
+    }
+  });
+};
+
+exports.edit = (req, res)=>
+{
+  var lessonId = req.params.lessonId;
+  Lesson.getByLessonId(lessonId, lesson=>
+  {
+    if(lesson)
+    {
+      Course.getByCourseId(lesson.courseId, course=>
+      {
+        if(String(course.userId) === req.session.userId)
+        {
+          lesson = _.create(Lesson.prototype, lesson);
+          lesson.edit(req.body);
+          lesson.save(lesson=>
+          {
+            var path = __dirname + '/../static/materials/' +  lesson._id + '.html';
+            fs.unlink(path, ()=>
+            {
+              fs.writeFile(path, req.body.material);
+              res.redirect('/user/courses/'+course._id);
+            });
+          });
+        }
+        else
+        {
+          res.redirect('/user');
+        }
+      });
     }
     else
     {
