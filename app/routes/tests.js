@@ -4,6 +4,7 @@ var traceur = require('traceur');
 var Course = traceur.require(__dirname + '/../models/course.js');
 var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 var Question = traceur.require(__dirname + '/../models/question.js');
+var _ = require('lodash');
 
 exports.new = (req, res)=>{
   var lessonId = req.params.lessonId;
@@ -69,12 +70,23 @@ exports.prepEdit = (req, res)=>{
   var userId = req.session.userId;
   res.render('tests/edit', {userId: userId, title: 'Edit a Test'});
 };
+
 exports.Edit = (req,res)=>{
   res.redirect('/user/courses/:coursesId');
 };
+
 exports.index = (req, res)=>{
-  Lesson.getByLessonId(req.params.lessonId, lesson=>{
+  var lessonId = req.params.lessonId;
+  Lesson.getByLessonId(lessonId, lesson=>{
+    Question.getByLessonId(lessonId, questions=>
+    {
+      questions = _.shuffle(questions);
+      questions.forEach(question=>
+      {
+        question.answers = _.shuffle(question.answers);
+      });
       var userId= req.session.userId;
-    res.render('tests/index', {userId: userId, lesson:lesson, title: 'Take a Test'});
+      res.render('tests/index', {questions: questions, userId: userId, lesson:lesson, title: 'Take a Test'});
+    });
   });
 };
