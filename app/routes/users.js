@@ -5,7 +5,14 @@ var User = traceur.require(__dirname + '/../models/user.js');
 
 exports.index = (req, res)=>{
   var userId = req.session.userId;
-  res.render('user/index', {userId: userId, title: 'User'});
+  if(userId)
+  {
+    res.render('user/index', {userId: userId, title: 'Welcome Back To Open Course'});
+  }
+  else
+  {
+    res.redirect('/portal');
+  }
 };
 
 exports.create = (req, res)=>{
