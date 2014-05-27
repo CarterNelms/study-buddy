@@ -3,5 +3,5 @@ extends ../shared/template
 block content
   h2 Your Score is
   h3= score
-  h4= #{pass}
-  -var pass = (didPass ? 'You Passed' : 'You Did not Pass' )
+  - var pass = (didPass ? 'You Passed' : 'You Did not Pass' )
+  h4= pass
