@@ -12,7 +12,9 @@ exports.create = (req, res)=>{
   var user = new User(req.body);
   user.create(user=>{
     console.log(user);
-    res.redirect('/portal');
+    req.session.userId = user._id;
+    res.redirect('/user');
+    // res.redirect('/portal');
   });
 };
 
