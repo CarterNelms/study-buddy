@@ -32,8 +32,10 @@ class Question
 
   static getByLessonId(lessonId, fn)
   {
+    lessonId = objectIDSafe(lessonId);
     questions.find({lessonId: lessonId}).toArray((e, aQuestions)=>
     {
+      console.log(aQuestions);
       fn(aQuestions);
     });
   }

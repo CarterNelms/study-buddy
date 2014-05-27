@@ -41,6 +41,6 @@ block content
       input(type='hidden' name='_method' value ='DELETE')
       button(id='delete', class='btn btn-danger') Delete Question
     p= question.question
-    //- ul
-    //-   each answer in question.answers
-    //-     li=answer.answer
+    ul
+      each answer in question.answers
+        li=answer.answer
