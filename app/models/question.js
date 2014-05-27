@@ -42,6 +42,7 @@ class Question
 
   static getByQuestionId(questionId, fn)
   {
+    questionId = objectIDSafe(questionId);
     questions.findOne({_id: questionId}, (e, question)=>
     {
       fn(question);
