@@ -3,7 +3,7 @@ extends ../shared/template
 block content
   h1 #{lesson.name} Test
 
-  form(method='POST', action='/user/#{user._id}/courses/#{course._id}/lesson/#{lesson._id}/test')
+  form(method='POST', action='/user/#{user._id}/courses/#{course._id}/lessons/#{lesson._id}/test')
     .time-limit-container
     each question in questions
       .question-container

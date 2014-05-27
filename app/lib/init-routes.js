@@ -37,15 +37,15 @@ function load(app, fn){
   app.get('/user/courses/:courseId', dbg, courses.prepEdit);
   app.put('/user/courses/:courseId', dbg, courses.edit);
   app.delete('/user/courses/:courseId', dbg, courses.destroy);
-  app.get('/user/courses/:courseId/lesson/new', dbg, lessons.new);
-  app.post('/user/courses/:courseId/lesson', dbg, lessons.create);
-  app.get('/user/courses/lesson/:lessonId', dbg, lessons.prepEdit);
-  app.post('/user/courses/lesson/:lessonId', dbg, lessons.edit);
-  app.delete('/user/courses/lesson/:lessonId', dbg, lessons.destroy);
-  app.get('/user/courses/lesson/:lessonId/test', dbg, tests.new);
-  app.post('/user/courses/lesson/:lessonId/test', dbg, tests.create);
-  app.get('/user/courses/lesson/:lessonId/test/:questionId', dbg, tests.prepEdit);
-  // app.put('/user/courses/:courseId/lesson/:lessonId/test', dbg, tests.edit);
+  app.get('/user/courses/:courseId/lessons/new', dbg, lessons.new);
+  app.post('/user/courses/:courseId/lessons', dbg, lessons.create);
+  app.get('/user/courses/lessons/:lessonId', dbg, lessons.prepEdit);
+  app.post('/user/courses/lessons/:lessonId', dbg, lessons.edit);
+  app.delete('/user/courses/lessons/:lessonId', dbg, lessons.destroy);
+  app.get('/user/courses/lessons/:lessonId/test', dbg, tests.new);
+  app.post('/user/courses/lessons/:lessonId/test', dbg, tests.create);
+  app.get('/user/courses/lessons/:lessonId/test/:questionId', dbg, tests.prepEdit);
+  // app.put('/user/courses/:courseId/lessons/:lessonId/test', dbg, tests.edit);
 
   console.log('Routes Loaded');
   fn();

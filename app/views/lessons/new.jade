@@ -3,7 +3,7 @@ extends ../shared/template
 block content
   h1 Create a Lesson
 
-  form.lesson(method='POST', action='/user/courses/#{course._id}/lesson')
+  form.lesson(method='POST', action='/user/courses/#{course._id}/lessons')
     .form-group
       label.lesson-name Lesson Name
       input.form-control(type='text', name='name', placeholder='Enter Course Name')

@@ -3,8 +3,8 @@ extends ../shared/template
 block content
   h1 Edit Lesson
 
-  //- form.lesson(method='POST', action='/user/courses/#{courses._id}/lesson/#{lesson_id}')
-  form.lesson(method='POST', action='/user/courses/lesson/#{lesson._id}')
+  //- form.lesson(method='POST', action='/user/courses/#{courses._id}/lessons/#{lesson_id}')
+  form.lesson(method='POST', action='/user/courses/lessons/#{lesson._id}')
     .form-group
       label.lesson-name Lesson Name
       input.form-control(type='text', name='name', placeholder='Enter Course Name' value=lesson.name)
@@ -151,8 +151,8 @@ block content
     button(id='delete', class='btn btn-danger') Delete Lesson
 
   .testContainer
-    //- form(method='GET', action='/user/courses/#{courses._id}/lesson/#{lesson._id}/test')
-    form(method='GET', action='/user/courses/lesson/#{lesson._id}/test')
+    //- form(method='GET', action='/user/courses/#{courses._id}/lessons/#{lesson._id}/test')
+    form(method='GET', action='/user/courses/lessons/#{lesson._id}/test')
       label.lesson-test Lesson Tests
       button(id='edit-test', class='btn btn-success') Edit Test
 
