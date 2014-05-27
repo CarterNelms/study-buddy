@@ -5,13 +5,6 @@ block content
 
   //- form.lesson(method='POST', action='/user/courses/#{courses._id}/lessons/#{lesson_id}')
   form.lesson(method='POST', action='/user/courses/lessons/#{lesson._id}')
-    .test-stats
-      .time-limit-container
-        h4 Time Limit
-        input(type='number', name='testTimer', placeholder='10' value=lesson.testTimer)
-      .passing-score-container
-        h4 Passing Score
-        input(type='number', name='passingScore', placeholder='85' value=lesson.passingScore)
     .form-group
       label.lesson-name Lesson Name
       input.form-control(type='text', name='name', placeholder='Enter Lesson Name' value=lesson.name)
@@ -149,17 +142,23 @@ block content
     //- form(method='POST', action='/user/courses/#{course._id}')
     //-   input(type="hidden" name="_method" value="DELETE")
     //-   button(id='delete', class='btn btn-danger') Delete Course
-    button#lesson-save(type='submit', class='btn btn-default') Save
+    input(type='hidden' name='material' value='')
+    .test-stats
+      .time-limit-container
+        h4 Time Limit
+        input(type='number', name='testTimer', placeholder='10' value=lesson.testTimer)
+      .passing-score-container
+        h4 Passing Score
+        input(type='number', name='passingScore', placeholder='85' value=lesson.passingScore)
+    button#lesson-save.lesson-edit-btn(type='submit', class='btn btn-success') Save Lesson
 
   form(method='POST', action='/user/courses/lessons/#{lesson._id}')
     input(type="hidden" name="_method" value="DELETE")
-    button(id='delete', class='btn btn-danger') Delete Lesson
+    button.lesson-delete-lesson(id='delete', class='btn btn-danger') Delete Lesson
 
-  .testContainer
     //- form(method='GET', action='/user/courses/#{courses._id}/lessons/#{lesson._id}/test')
-    form(method='GET', action='/user/courses/lessons/#{lesson._id}/test')
-      label.lesson-test Lesson Tests
-      button(id='edit-test', class='btn btn-success') Edit Test
+  form(method='GET', action='/user/courses/lessons/#{lesson._id}/test')
+    button.lesson-edit-test(id='edit-test', class='btn btn-primary') Edit Test
 
 block scripts
   script(src='/js/es6/compiled/lessonEdit.js')

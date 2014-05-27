@@ -10,13 +10,6 @@ block content
     .form-group
       label.lesson-des Lesson Description
       textarea.form-control(type='text',name='description', placeholder='Enter Lesson Description')
-    .test-stats
-      .time-limit-container
-        h4 Time Limit
-        input(type='number', name='testTimer', placeholder='10mins')
-      .passing-score-container
-        h4 Passing Score
-        input(type='number', name='passingScore', placeholder='85%')
     #content-container
       .basic-wrapper(style='display: none;')
           .toolbar-container
@@ -144,7 +137,14 @@ block content
             //-   span.sc-format-button.sc-authorship(title='Authorship')
           #editor.editor-container
     input(type='hidden' name='material' value='')
-    button(type='submit', class='btn btn-default') Submit
+    .test-stats
+      .time-limit-container
+        h4 Test Time Limit
+        input(type='number', name='testTimer', placeholder='i.e. "10"')
+      .passing-score-container
+        h4 Test Passing Score
+        input(type='number', name='passingScore', placeholder='i.e. "85"')
+    button.lesson-create-btn(type='submit', class='btn btn-success btn-lg') Create
 
 block scripts
   srcipt(src='http://quilljs.com/js/quill.js')

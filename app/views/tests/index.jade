@@ -3,15 +3,16 @@ extends ../shared/template
 block content
   h1 #{lesson.name} Test
 
+  .time-limit-container(data-timer=lesson.testTimer)
+
   form#test(method='POST', action='/user/#{userId}/lessons/#{lesson._id}/test')
-    .time-limit-container(data-timer=lesson.testTimer)
     each question in questions
-      .question-container
-        p(class='question')= question.question
+      .test-question-container
+        h4(class='question')= question.question
           each answer in question.answers
-            p(class='answer', data-answer='#{answer.answer}')= answer.answer
+            h5(class='answer', data-answer='#{answer.answer}')= answer.answer
             input(type='radio' name='#{question._id}' value='#{answer.answer}')
-    button(type='submit', class='btn btn-default') Submit Test
+    button.submit-test(type='submit', class='btn btn-success') Submit Test
 
 block scripts
   script(src='/js/es6/compiled/take-test.js')
