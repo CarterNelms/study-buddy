@@ -9,3 +9,6 @@ block content
   h4= lesson.description
 
   #content
+
+  form(method='GET', action='/lessons/#{lesson._id}/test')
+    button Take Test

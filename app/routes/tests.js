@@ -72,3 +72,9 @@ exports.prepEdit = (req, res)=>{
 exports.Edit = (req,res)=>{
   res.redirect('/user/courses/:coursesId');
 };
+exports.index = (req, res)=>{
+  Lesson.getByLessonId(req.params.lessonId, lesson=>{
+      var userId= req.session.userId;
+    res.render('tests/index', {userId: userId, lesson:lesson, title: 'Take a Test'});
+  });
+};
