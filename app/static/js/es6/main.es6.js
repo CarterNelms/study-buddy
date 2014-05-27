@@ -3,9 +3,21 @@
 
   $(document).ready(init);
 
-  function init(){
-    // $('.add-test-question').on('click', addQuestion);
-  }
+  var timer;
 
+  function init(){
+    timer =  60 * $('.time-limit-container').data('timer');
+    setInterval(tickClock, 1000);
+  }
+  function tickClock(){
+    timer--;
+    if (timer<0){
+      $('#test').submit();
+    }
+    else{
+      var timerDisplay = Math.floor(timer / 60) + ':' + (timer % 60);
+      $('.time-limit-container').text(timerDisplay);
+    }
+  }
 
 })();
