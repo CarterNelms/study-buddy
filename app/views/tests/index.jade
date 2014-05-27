@@ -8,16 +8,7 @@ block content
     each question in questions
       .question-container
         p(class='question')= question.question
-        label A
-        p(class='answer', data-answer='a')= question.answer-a
-        input(type='checkbox', data-answer-checkbox='a')
-        label B
-        p(class='answer', data-answer='b')= question.answer-b
-        input(type='checkbox',data-answer-checkbox='b')
-        label C
-        p(class='answer', data-answer='c')= question.answer-c
-        input(type='checkbox',data-answer-checkbox='c')
-        label D
-        p(class='answer', data-answer='d')= question.answer-d
-        input(type='checkbox',data-answer-checkbox='d')
+          each answer in answers
+            p(class='answer', data-answer='question.answer')= question.answer
+            input(type='checkbox')
     button(type='submit', class='btn btn-default') Submit Test
