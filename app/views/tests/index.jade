@@ -8,7 +8,7 @@ block content
     each question in questions
       .question-container
         p(class='question')= question.question
-          each answer in answers
-            p(class='answer', data-answer='question.answer')= question.answer
-            input(type='checkbox')
+          each answer in question.answers
+            p(class='answer', data-answer='#{answer.answer}')= answer.answer
+            input(type='checkbox' name='answer' value='#{answer.answer}')
     button(type='submit', class='btn btn-default') Submit Test

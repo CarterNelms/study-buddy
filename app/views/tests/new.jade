@@ -36,7 +36,11 @@ block content
           input.answer-d(type='text', name='D', placeholder='Enter Answer')
 
   each question in questions
+    - console.log(question.question)
     form(method='POST', action='/user/courses/lessons/test/#{question._id}')
-      console.log(question);
-    input(type='hidden' name='_method' value ='DELETE')
-    button(id='delete', class='btn btn-danger') Delete Course
+      input(type='hidden' name='_method' value ='DELETE')
+      button(id='delete', class='btn btn-danger') Delete Question
+    p= question.question
+    //- ul
+    //-   each answer in question.answers
+    //-     li=answer.answer

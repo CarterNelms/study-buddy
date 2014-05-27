@@ -4,7 +4,7 @@
   $(document).ready(init);
 
   function init(){
-    $('.add-test-question').on('click', addQuestion);
+    // $('.add-test-question').on('click', addQuestion);
   }
 
 
