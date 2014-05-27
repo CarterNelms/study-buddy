@@ -32,7 +32,7 @@ class Question
 
   static getByLessonId(lessonId, fn)
   {
-    questions.find({lessonId: lessonId}, (e, aQuestions)=>
+    questions.find({lessonId: lessonId}).toArray((e, aQuestions)=>
     {
       fn(aQuestions);
     });
@@ -40,7 +40,7 @@ class Question
 
   static getByQuestionId(questionId, fn)
   {
-    questions.find({_id: questionId}, (e, question)=>
+    questions.findOne({_id: questionId}, (e, question)=>
     {
       fn(question);
     });
