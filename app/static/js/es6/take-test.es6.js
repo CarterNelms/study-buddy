@@ -6,7 +6,7 @@
   var timer;
 
   function init(){
-    timer =  60 * $('.time-limit-container').data('timer');
+    timer =  60 * $('.time-limit-container-test').data('timer');
     setInterval(tickClock, 1000);
   }
   function tickClock(){
@@ -16,7 +16,7 @@
     }
     else{
       var timerDisplay = Math.floor(timer / 60) + ':' + (timer % 60);
-      $('.time-limit-container').text(timerDisplay);
+      $('.time-limit-container-test').text(timerDisplay);
     }
   }
 
