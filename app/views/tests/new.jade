@@ -4,7 +4,7 @@ block content
   h1 Add New Question
 
   form#test(method='POST', action='/user/courses/lessons/#{lessonId}/test')
-    button.add-test-question(class='btn btn-default') Add New Question
+    button.add-test-question(type='submit', class='btn btn-default') Add New Question
     .test-stats
       .time-limit-container
         h4 Time Limit
@@ -34,4 +34,9 @@ block content
           label D
           input(type='radio' name='correct' value='D')
           input.answer-d(type='text', name='D', placeholder='Enter Answer')
-    button.sumbit-test(type='submit',class='btn btn-success') Create Test
+
+  each question in questions
+    form(method='POST', action='/user/courses/lessons/test/#{question._id}')
+      console.log(question);
+    input(type='hidden' name='_method' value ='DELETE')
+    button(id='delete', class='btn btn-danger') Delete Course
