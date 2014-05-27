@@ -24,6 +24,27 @@ class Question
   {
     questions.save(this, ()=>fn());
   }
+
+  destroy(fn)
+  {
+    questions.remove({_id: this._id}, true, ()=>fn());
+  }
+
+  static getByLessonId(lessonId, fn)
+  {
+    questions.find({lessonId: lessonId}, (e, aQuestions)=>
+    {
+      fn(aQuestions);
+    });
+  }
+
+  static getByQuestionId(questionId, fn)
+  {
+    questions.find({_id: questionId}, (e, question)=>
+    {
+      fn(question);
+    });
+  }
 }
 
 function objectIDSafe(id)

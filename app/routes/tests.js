@@ -6,7 +6,11 @@ var Lesson = traceur.require(__dirname + '/../models/lesson.js');
 var Question = traceur.require(__dirname + '/../models/question.js');
 
 exports.new = (req, res)=>{
-  res.render('tests/new', {lessonId: req.params.lessonId, title: 'Add Test Question'});
+  var lessonId = req.params.lessonId;
+  Question.getByLessonId(lessonId, questions=>
+  {
+    res.render('tests/new', {questions: questions, lessonId: lessonId, title: 'Add Test Question'});
+  });
 };
 
 exports.create = (req, res)=>
@@ -32,6 +36,31 @@ exports.create = (req, res)=>
       {
         res.redirect('/user');
       }
+    });
+  });
+};
+
+exports.destroy = (req, res)=>
+{
+  var questionId = req.params.questionId;
+  Question.getByQuestionId(questionId, question=>
+  {
+    Lesson.getByLessonId(question.lessonId, lesson=>
+    {
+      Course.getByCourseId(lesson.courseId, course=>
+      {
+        if(req.session.userId === String(course.userId))
+        {
+          question.destroy(()=>
+          {
+            res.redirect('/user/courses/lessons/'+lesson._id+'/test');
+          });
+        }
+        else
+        {
+          res.redirect('/user');
+        }
+      });
     });
   });
 };

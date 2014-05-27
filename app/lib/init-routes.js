@@ -44,8 +44,8 @@ function load(app, fn){
   app.delete('/user/courses/lessons/:lessonId', dbg, lessons.destroy);
   app.get('/user/courses/lessons/:lessonId/test', dbg, tests.new);
   app.post('/user/courses/lessons/:lessonId/test', dbg, tests.create);
-  app.get('/user/courses/lessons/:lessonId/test/:questionId', dbg, tests.prepEdit);
-  // app.put('/user/courses/:courseId/lessons/:lessonId/test', dbg, tests.edit);
+  // app.get('/user/courses/lessons/test/:questionId', dbg, tests.prepEdit);
+  app.delete('/user/courses/lessons/test/:questionId', dbg, tests.destroy);
 
   console.log('Routes Loaded');
   fn();
