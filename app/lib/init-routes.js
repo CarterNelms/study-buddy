@@ -47,6 +47,7 @@ function load(app, fn){
   app.post('/user/courses/lessons/:lessonId/test', dbg, tests.create);
   // app.get('/user/courses/lessons/test/:questionId', dbg, tests.prepEdit);
   app.delete('/user/courses/lessons/test/:questionId', dbg, tests.destroy);
+  app.post('/user/:userId/lessons/:lessonId/test', dbg, tests.score);
 
   console.log('Routes Loaded');
   fn();

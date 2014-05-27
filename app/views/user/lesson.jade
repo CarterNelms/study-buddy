@@ -5,13 +5,13 @@ block content
 
   //- form.lesson(method='POST', action='/user/courses/#{courses._id}/lessons/#{lesson_id}')
   form.lesson(method='POST', action='/user/courses/lessons/#{lesson._id}')
-  .test-stats
-    .time-limit-container
-      h4 Time Limit
-      input(type='number', name='testTimer', placeholder='10' value=lesson.testTimer)
-    .passing-score-container
-      h4 Passing Score
-      input(type='number', name='passingScore', placeholder='85' value=lesson.passingScore)
+    .test-stats
+      .time-limit-container
+        h4 Time Limit
+        input(type='number', name='testTimer', placeholder='10' value=lesson.testTimer)
+      .passing-score-container
+        h4 Passing Score
+        input(type='number', name='passingScore', placeholder='85' value=lesson.passingScore)
     .form-group
       label.lesson-name Lesson Name
       input.form-control(type='text', name='name', placeholder='Enter Lesson Name' value=lesson.name)

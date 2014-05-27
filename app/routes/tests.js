@@ -14,6 +14,36 @@ exports.new = (req, res)=>{
   });
 };
 
+exports.score = (req, res)=>
+{
+  var lessonId = req.params.lessonId;
+  Question.getByLessonId(lessonId, questions=>
+  {
+    var totalCorrectAnswers = 0;
+    questions.forEach(question=>
+    {
+      var usersAnswer = req.body[String(question._id)];
+      var correctAnswer = question.answers.find(answer=>answer.isCorrect).answer;
+      if(usersAnswer === correctAnswer)
+      {
+        ++totalCorrectAnswers;
+        console.log('RIGHT');
+      }
+      else
+      {
+        console.log('WRONG');
+      }
+    });
+    var totalQuestions = questions.length;
+    var score = totalCorrectAnswers/totalQuestions * 100;
+    Lesson.getByLessonId(lessonId, lesson=>
+    {
+      var didPass = score >= lesson.passingScore;
+      res.render('tests/results', {score: score, didPass: didPass, title: 'Test Results'});
+    });
+  });
+};
+
 exports.create = (req, res)=>
 {
   var lessonId = req.params.lessonId;
