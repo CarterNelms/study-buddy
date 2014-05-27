@@ -6,11 +6,17 @@ block content
   form.lesson(method='POST', action='/user/courses/#{course._id}/lessons')
     .form-group
       label.lesson-name Lesson Name
-      input.form-control(type='text', name='name', placeholder='Enter Course Name')
+      input.form-control(type='text', name='name', placeholder='Enter Lesson Name')
     .form-group
       label.lesson-des Lesson Description
-      textarea.form-control(type='text',name='description', placeholder='Enter Course Description')
-
+      textarea.form-control(type='text',name='description', placeholder='Enter Lesson Description')
+    .test-stats
+      .time-limit-container
+        h4 Time Limit
+        input(type='number', name='testTimer', placeholder='10mins')
+      .passing-score-container
+        h4 Passing Score
+        input(type='number', name='passingScore', placeholder='85%')
     #content-container
       .basic-wrapper(style='display: none;')
           .toolbar-container
