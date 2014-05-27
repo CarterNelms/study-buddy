@@ -14,6 +14,14 @@ exports.index = (req,res)=>{
   });
 };
 
+exports.destroy = (req,res)=>{
+  var lessonId = req.params.lessonId;
+  Lesson.getByLessonId(lessonId, lesson=>{
+    lesson = _.create(Lesson.prototype, lesson);
+    lesson.destroy(()=>res.redirect('/user/courses'));
+  });
+};
+
 exports.new = (req,res)=>{
   var courseId = req.params.courseId;
   var userId = req.session.userId;

@@ -41,6 +41,7 @@ function load(app, fn){
   app.post('/user/courses/:courseId/lesson', dbg, lessons.create);
   app.get('/user/courses/lesson/:lessonId', dbg, lessons.prepEdit);
   app.post('/user/courses/lesson/:lessonId', dbg, lessons.edit);
+  app.delete('/user/courses/lesson/:lessonId', dbg, lessons.destroy);
   app.get('/user/courses/lesson/:lessonId/test', dbg, tests.new);
   app.post('/user/courses/lesson/:lessonId/test', dbg, tests.create);
   app.get('/user/courses/lesson/:lessonId/test/:questionId', dbg, tests.prepEdit);

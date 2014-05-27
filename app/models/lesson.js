@@ -35,6 +35,11 @@ class Lesson
     this.passingScore = obj.passingScore;
   }
 
+  destroy(fn)
+  {
+    lessons.remove({_id: this._id}, true, ()=>fn());
+  }
+
   static getByLessonId(lessonId, fn){
     lessonId = objectIDSafe(lessonId);
     lessons.findOne({_id: lessonId}, (e, lesson)=>{
