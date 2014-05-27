@@ -52,6 +52,7 @@ exports.destroy = (req, res)=>
       {
         if(req.session.userId === String(course.userId))
         {
+          question = _.create(Question.prototype, question);
           question.destroy(()=>
           {
             res.redirect('/user/courses/lessons/'+lesson._id+'/test');
