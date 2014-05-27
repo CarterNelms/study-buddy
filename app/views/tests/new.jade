@@ -3,7 +3,7 @@ extends ../shared/template
 block content
   h1 Add New Question
 
-  form#test(method='POST', action='/user/courses/lesson/#{lessonId}/test')
+  form#test(method='POST', action='/user/courses/lessons/#{lessonId}/test')
     button.add-test-question(class='btn btn-default') Add New Question
     .test-stats
       .time-limit-container

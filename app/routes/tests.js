@@ -25,7 +25,7 @@ exports.create = (req, res)=>
         var question = new Question(req.body, lessonId);
         question.save(()=>
         {
-          res.redirect('/user/courses/lesson/'+lessonId);
+          res.redirect('/user/courses/lessons/'+lessonId);
         });
       }
       else
